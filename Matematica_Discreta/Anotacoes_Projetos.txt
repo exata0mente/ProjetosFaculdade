@@ -13,13 +13,11 @@ Resumo -
 
 Introdução - 
 
-O ISBN - International Standart Book Numbers, é um sistema para padronização numérica usado internacionalmente na identificação de livros. Basicamente ele é dividio em cinco grupos: prefixo, grupo de registro, registrante, edição e dígito de controle, sendo este último o objeto de nossa pesquisa.
-
+O ISBN - International Standart Book Numbers, é um sistema para padronização numérica usado internacionalmente na identificação de livros. Basicamente ele é dividido em cinco grupos: prefixo, grupo de registro, registrante, edição e dígito de controle, sendo este último o objeto de nossa pesquisa.
 A necessidade de uma identificação padronizada em números, foi abordada em 1966 na 3a Conferência Internacional de Investigação no Mercado do Livro e Racionalização no Comércio do Livro [1][2] onde editores e distribuidores pretendiam utilizar computadores para catalogação dos inventários. Para isso, não seria uma solução utilizar o título e o autor do livro como identificadores, devido a grande diferença entre os idiomas. Desta forma, decidiu-se então utilizar uma língua universal: números.
-
-Alguns sistemas já existentes (como o dos ingleses J. Whitaker & Sons) foram sendo mesclados com sistemas emergentes(do norte-americano R. R. Bowke 1969) e ganhando popularidade entre os profissionais do meio, resultando, no ano de 1970, na formalização do ISBN na norma ISO 2108. Apartir de 2007 as novas publicações passariam a seguir a ISO 2108:2005[3], que define que a numeração deverá ser precedida pelo número 978. Atualmente, esta norma está em nova revisão [4].
-
-Neste artigo abordaremos breves características do padrão ISBN-13 porém sem muitos detalhes, nosso foco é a aplicação da aritimética modular na geração do dígito verificador e estudar alguns casos peculiares. No capítulo 1 descrevemos os grupos que compõe os dígitos do ISBN e como eles se relacionam.
+Alguns sistemas já existentes (como o dos ingleses J. Whitaker & Sons) foram sendo mesclados com sistemas emergentes(do norte-americano R. R. Bowke 1969) e ganhando popularidade entre os profissionais do meio, resultando, no ano de 1970, na formalização do ISBN na norma ISO 2108. A partir de 2007 as novas publicações passariam a seguir a ISO 2108:2005[3], que define que a numeração deverá ser precedida pelo número 978. Atualmente, esta norma está em nova revisão [4].
+Neste artigo abordaremos breves características do padrão ISBN-13 porém sem muitos detalhes conceituais. Nosso foco é a aplicação da aritmética modular na geração do dígito verificador e estudar alguns casos peculiares. No capítulo 1 descrevemos os grupos que compõe os dígitos do ISBN e como eles se relacionam. Uma fundamentação teórica para melhor entendimento do ISBN.
+No capítulo 2 introduziremos a aritmética modular, conceitos básicos e algumas aplicações cotidianas. No capítulo 3 aplicaremos a aritmética modular para o cálculo do dígito  verificador de um ISBN. Mostraremos a aplicação para ISBN-10 e ISBN-13, que é utilizado desde 2007.
 
 Capítulo 1 - Estrutura do ISBN.
 
