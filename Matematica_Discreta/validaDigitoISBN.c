@@ -18,9 +18,8 @@ int main(void){
     
     printf("Digite o código ISBN: ");
     leitura_isbn(isbn_tmp);
-    printf("isbn_tmp = %s\n", isbn_tmp);
     limpa_isbn(isbn_tmp, isbn);
-    printf("isbn_tmp = %s\nisbn = %s", isbn_tmp, isbn);
+//     printf("isbn_tmp = %s\nisbn = %s", isbn_tmp, isbn);
     digito_ver = calcula_digito_verificador(isbn);
     
     printf("O dígito verificador é: %d\n", digito_ver);
@@ -39,7 +38,7 @@ void limpa_isbn(char vet_tmp[], char vet[]){
     for(i = 0; i < U; i++){
         if(vet_tmp[i] >= 48 && vet_tmp[i] <= 57){
             vet[j] = vet_tmp[i];
-            printf("vet[%d] = %c\n", j,vet[j]);
+//             printf("vet[%d] = %c\n", j,vet[j]);
             j++;
             if(j == T){
                 break;
@@ -49,29 +48,22 @@ void limpa_isbn(char vet_tmp[], char vet[]){
 }
 
 int calcula_digito_verificador(char vet[T]){
-    
-    int digito = 0;
-    int digito_verificador = 0;
+
+    int i = 0;
     int aux = 0;
-    double isbn_int = 0;
+    int k = 0;
     
-    isbn_int = atoi(vet);
-    
-    printf("\nISBN convertido = %lf\n", isbn_int);
-    
-    for(digito = T-1; digito > 0; digito--){
-        aux = isbn_int % 10; 
-        printf("aux = %d\n", aux);
-        isbn_int /= 10;
-        printf("isbn_int = %lf\n", isbn_int);
-        if(digito % 2)//É par
-            digito_verificador += aux * 3;
-        else // É impar
-            digito_verificador += aux;
-        printf("****** Digito verificador = %d ********\n", digito_verificador);
-        
-        digito_verificador = 10 - digito_verificador % 10;
+    for(i = 0; i < T; i++){
+        aux = vet[i] - '0';
+        if((i+1) % 2) // É impar
+            k = k + aux;
+        else // É par
+            k = k + aux * 3;
+        printf("vet[%d] = %d\n", i, aux);
+        printf("k = %d\n", k);
     }
-    return digito_verificador;
     
-}
+    k = 10 - (k % 10);
+    
+    return k;
+} 
