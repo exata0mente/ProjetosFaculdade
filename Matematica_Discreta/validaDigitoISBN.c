@@ -35,13 +35,11 @@ int main(void){
     switch (opc){
         case 1:
             inicializa_vetor(codISBN, T_10);
-//             mostra_vetor(codISBN,T_10);
             limpa_ISBN(codTemp, codISBN, T_10);
             digitoVerificador = digito_EAN10(codISBN, T_10);
             break;
         case 2:
             inicializa_vetor(codISBN, T_13);
-            mostra_vetor(codISBN, T_13);
             limpa_ISBN(codTemp, codISBN, T_13);
             digitoVerificador = digito_EAN13(codISBN, T_13);
             break;
