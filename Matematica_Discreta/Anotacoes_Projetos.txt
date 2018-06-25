@@ -1,0 +1,121 @@
+## CONTINUAR - As derivações dos grupos de registros para determinação dos intervalos disponíveis.
+
+ISBN
+1) O que é
+2) Como calcular
+3) Implementação
+4) Apresentação
+
+
+Resumo - 
+
+
+
+Introdução - 
+
+O ISBN - International Standart Book Numbers, é um sistema para padronização numérica usado internacionalmente na identificação de livros. Basicamente ele é dividido em cinco grupos: prefixo, grupo de registro, registrante, edição e dígito de controle, sendo este último o objeto de nossa pesquisa.
+A necessidade de uma identificação padronizada em números, foi abordada em 1966 na 3a Conferência Internacional de Investigação no Mercado do Livro e Racionalização no Comércio do Livro [1][2] onde editores e distribuidores pretendiam utilizar computadores para catalogação dos inventários. Para isso, não seria uma solução utilizar o título e o autor do livro como identificadores, devido a grande diferença entre os idiomas. Desta forma, decidiu-se então utilizar uma língua universal: números.
+Alguns sistemas já existentes (como o dos ingleses J. Whitaker & Sons) foram sendo mesclados com sistemas emergentes(do norte-americano R. R. Bowke 1969) e ganhando popularidade entre os profissionais do meio, resultando, no ano de 1970, na formalização do ISBN na norma ISO 2108. A partir de 2007 as novas publicações passariam a seguir a ISO 2108:2005[3], que define que a numeração deverá ser precedida pelo número 978. Atualmente, esta norma está em nova revisão [4].
+Neste artigo abordaremos breves características do padrão ISBN-13 porém sem muitos detalhes conceituais. Nosso foco é a aplicação da aritmética modular na geração do dígito verificador e estudar alguns casos peculiares. No capítulo 1 descrevemos os grupos que compõe os dígitos do ISBN e como eles se relacionam. Uma fundamentação teórica para melhor entendimento do ISBN.
+No capítulo 2 introduziremos a aritmética modular, conceitos básicos e algumas aplicações cotidianas. No capítulo 3 aplicaremos a aritmética modular para o cálculo do dígito  verificador de um ISBN. Mostraremos a aplicação para ISBN-10 e ISBN-13, que é utilizado desde 2007.
+
+Capítulo 1 - Estrutura do ISBN.
+
+	O ISBN é dividido em cinco elementos: prefixo, grupo de registro, registrante, edição e dígito de controle.
+
+1.1 - Elemento do prefixo.
+	
+	Este grupo foi introduzido na normativa ISO 2108:2005, definindo que todos os números ISBN, a partir de 2007, serão precedidos por 978, aumentando a faixa de números disponíveis para liberação às publicações. O prefixo 979 também está disponível, cabendo à Agencia Nacional Reguladora disponibilizá-la ou não.
+
+1.2 - Grupo de registro.
+
+	O segundo elemento do ISBN identifica o país, a região geográfica ou a área linguística participante no sistema ISBN [5]. Este é um grupo que caberá uma observação pois cada dígito terá relação direta nos elementos registrantes e de edição. Seu tamanho é de 5 dígitos.[ABORDAR EM UM CAPITULO ESPECIFICO OU CONTINUALO AQUI???]
+
+1.3 - Registrante.
+
+	Este elemento é basicamente associado ao editor, sua extenção deriva da quantidade de publicações esperadas. Ou seja, quanto maior a frequência de publicações estimadas maior será os campos disponíveis para o grupo de edição. Abordaremos a "alocação" dos elementos ao final deste capítulo.
+
+1.4 - Edição .
+
+	O quarto elemento, de edição (pode ser encontrado também como elemento de publicação)[7] é o número dado à publicação específica de um editor específico, quanto maior o número de publicações estimadas pelo editor maior será a faixa disponível de elementos. Sua atribuição segue uma sequência de normas que não serão abordadas aqui, mas podem ser consultandas em [8].
+
+1.5 - Dígito verificador.
+
+	O objeto do nosso estudo. É calculado utilizando a aritimética modular, onde, seguindo sequência de multiplicação e soma dos dígitos do ISBN e divindio-a por 10, tem-se um resto que servirá de dígito verificador. [ABORDO AQUI A FÓRMULA OU "PUXO" EM UM CAPÍTULO?].
+
+1.6 - Identificando um ISBN inválido.
+
+	Sendo o ISBN composto de 13 dígitos onde 3 são o prefixo e 1 é o dígito verificador, temos 9 dígitos restantes que são definidos o intervalo de acordo com a relação dos grupos de registros, registrantes e edição.
+
+	O  número  de  dígitos  nos  elementos  de  grupo  de  registro  e  de  registrante  varia  de  acordo  com  a  quantidade publicada do grupo de registro ou registrante em questão. Grupos de registro para os quais uma grande 
+produção de  publicações  monográficas  seja  prevista  recebem  números  de  grupo  de  um  ou  dois  dígitos.  Os  editores com uma grande produção de publicações prevista recebem números de registrante de dois ou três dígitos. [6]
+
+	Esta etapa faz-se necessária a este artigo pois há um determinado intervalo dos elementos de publicação em que o ISBN é considerado inválido, fato que deve ser levado em conta na elaboração do algoritmo.
+
+1.6.1 - Definindo o intervalo de grupos de registros válidos.
+
+	Para identificarmos o intervalo disponível de grupo de registros, devemos pegar como base o elemento prefixo e o grupo de registro. Em outras palavras, para identificarmos quantos campos no intervalo de 9 dígitos estarão disponíveis precisaremos relacionar o número do elemento do país, região geográfica ou área linguística com o prefixo, no nosso caso 978. Ver Tabela 1.
+
+[TABELA 1]
+
+	Sabemos então que o grupo de registro de intervalo 6500000 a 6999999 não terá grupo de registros disponível, ou seja, não terá os campos que identifique a monografia, logo, será inválido.
+
+	Para sabermos então qual a extensão de cada um dos campos identificadores da monografia estará disponível, lembrando que eles ocupam ao todo 9 dígitos do código ISBN, sendo sua distribuição derivada do grupo de registro, utilizaremos os 5 dígitos que seguem o elemento de prefixo:
+
+[TABELA 2]
+
+Veja que se o prefixo do ISBN for 978 será considerado indefinido o intervalo disponíveis para o grupo de registro 6. Esta é uma forma de validar se o ISBN fornecido é válido.
+
+É possível também identificar quais os intervalos do elemento do registrante e de edição estarão disponíveis para determinado grupo de registro. Para isso faz-se necessário seguir as regras do grupo de registros disponíveis na Agência Internacional ISBN [9].
+
+Capítulo 2 - Aritimética Modular.
+
+Capítulo 3 - Aplicação da aritmética modular no ISBN.
+
+3.1 - Cálculo do dígito verificador ISBN
+3.1.1 - ISBN-10
+3.1.2 - ISBN-13
+
+	O método para calcular o dígito verificador do ISBN-13 é identico ao cálculo do EAN-13, onde:
+
+	i) Multiplica-se alternadamente os 12 primeiros dígitos por 1 e 3 (em termos mais voltados à programação, podemos dizer que "multiplicasse os elementos das posições pares por 3 - com o índice da primeira posição iniciando em 1").
+	ii) Soma-se o resultado de i), algebricamente:
+
+		S = a1*1 + a2*3 + a3*1 + a4*3 + a5*1 + a6*3 + a7*1 + a8*3 + a9*1 + a10*3 + a11*1 + a12*3 
+	
+	iii) Calcula-se S mod 10
+	iv) Subtrai-se do resultado de iii) o valor 10. Tendo então o dígito verificador.
+
+Exemplo [10]:
+
+ISBN = 978-0-11-000222-k
+
+S = 9*1 + 7*3 + 8*1 + 0*3 + 1*1 + 1*3 + 0*1 + 0*3 + 0*1 + 2*3 + 2*1 + 2*3
+S = 56
+
+k = 10 - S mod 10
+k = 10 - 56 mod 10
+k = 10 - 6
+k = 4
+
+logo
+
+ISBN = 978-0-11-000222-k
+
+Em casos no qual k = 10 convenciona-se que k = 0 para manter o dígito verificador com um elemento.
+
+Materiais e Métodos - 
+Referências - 
+
+[1] Manual ISBN
+[2] Site ISBN.br - http://www.isbn.bn.br/
+[3] https://www.iso.org/standard/36563.html
+[4] https://www.iso.org/standard/65483.html
+[5] Manual ISBN, página 6
+[6] http://leg.ufpi.br/subsiteFiles/ppgcf/arquivos/files/NBR%202108.PDF
+[7] http://leg.ufpi.br/subsiteFiles/ppgcf/arquivos/files/NBR%202108.PDF página 4
+[8] http://leg.ufpi.br/subsiteFiles/ppgcf/arquivos/files/NBR%202108.PDF página 7
+[Tabela 1] Manual ISBN tabela 1
+[Tabela 2] Manual ISBN tabela 2
+[9] Manual ISBN página 26
+[10] Manual ISBN página 24
